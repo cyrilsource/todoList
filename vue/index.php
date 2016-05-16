@@ -20,18 +20,30 @@ include('header.php');
 		    <p><a class="btn btn-primary btn-lg" href="editTheme.php" role="button">Editer un nouveau thème</a></p>
 	    </div><!--.col-md-4-->
 	    <div class="col-md-4">
-	    	
-	    	<!-- on va afficher ici les t de la journée -->
 	    	<h2><span class="label label-default">Todo(s) du jour</span></h2>
-	   		 <?php foreach ($dayTodos as $dayTodo) { ?>
-	    
-    	   		<ul class="list-unstyled">
-    	   			<li class="list-group-item"><h4><?php echo($dayTodo['description']); ?> - <a href="../controller/deleteTodoHome.php?idTodo=<?php echo($dayTodo['todo_id']); ?>&idTheme=<?php echo($dayTodo['theme_id']) ?>&idCategorie=<?php echo($dayTodo['categorie_id']) ?>">supprimer</a></h4><h5>(<a href="editTodo.php?idTheme=<?php echo($dayTodo['theme_id']); ?>&idCategorie=<?php echo($dayTodo['categorie_id']); ?>"><?php echo($dayTodo['categorie']); ?></a>)</h5></li>
-    	   		</ul>
+	    	<!-- on teste si il y a des todos pour aujourd'hui -->
+	    	<?php if (count($dayTodos)==0) {?>
+	    				<h3>C'est tout bon pour ajourd'hui</h3>
+	    				<h3>bonne journée</h3>
 	    	
-	    	
-	     	<?php } ?>
-	 
+	    	<?php
+	    	}
+	    	else {
+	    		
+	    	?>
+		    	<!-- on va afficher ici les t de la journée -->
+		    	
+		   		 <?php foreach ($dayTodos as $dayTodo) { ?>
+		    
+	    	   		<ul class="list-unstyled">
+	    	   			<li class="list-group-item"><h4><?php echo($dayTodo['description']); ?> - <a href="../controller/deleteTodoHome.php?idTodo=<?php echo($dayTodo['todo_id']); ?>&idTheme=<?php echo($dayTodo['theme_id']) ?>&idCategorie=<?php echo($dayTodo['categorie_id']) ?>">supprimer</a></h4><h5>(<a href="editTodo.php?idTheme=<?php echo($dayTodo['theme_id']); ?>&idCategorie=<?php echo($dayTodo['categorie_id']); ?>"><?php echo($dayTodo['categorie']); ?></a>)</h5></li>
+	    	   		</ul>
+		    	
+		    	
+		     	<?php } 
+		     	
+		    } 	?>
+	 		
    		</div><!--.col-md-4-->
    		
   		 <div class="col-md-4">
